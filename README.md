@@ -21,10 +21,47 @@ Simular una aplicación vulnerable para:
 - 📁 Variables de entorno con `dotenv`
 
 ---
+## 🔧 Requisitos
 
-## 🚀 Cómo ejecutar el proyecto
+- Node.js (v18+ recomendado)
+- Una cuenta de MongoDB Atlas (o instancia local de MongoDB)
+
+---
+## 🚀 Instalación
 
 1. **Clona el repositorio**
    ```bash
-   git clone 
-   cd reto1-nosql-injection/backend
+   git clone https://github.com/dinovillalobos/LoginVulnerable.git
+   cd Reto1
+
+2. **Instalar dependencias**
+   ```bash
+   cd backend
+   npm install
+
+3. **Configurar variables de entorno**
+   Crea un archivo .env dentro del directorio backend con el siguiente contenido
+   ```bash
+   PORT=3000
+   MONGODB_URI=tu_uri_de_mongodb_aqui
+   
+---
+## 🖥️ Ejecutar el proyecto
+
+1. **Desde la carpeta backend, corre el servidor:**
+   ```bash
+   npm start
+
+2. **Abre tu navegador y entra a:**
+   ```bash
+   http://localhost:3000
+
+## 🧪 Prueba de inyección NoSQL
+
+- Usuario
+   ```bash
+  { "$ne": null }
+
+- Contraseña
+   ```bash
+  { "$ne": null }
