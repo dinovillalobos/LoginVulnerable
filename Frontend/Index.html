@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login Vulnerable - Reto #1</title>
+<style>
+    body {
+    font-family: 'Courier New', monospace;
+    background-color: #121212;
+    color: #00ff99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+    }
+    input, button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+    button {
+    background-color: #00ff99;
+    color: #121212;
+    cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<h1>🔐 Login Vulnerable</h1>
+
+<input type="text" id="username" placeholder="Usuario" />
+<input type="password" id="password" placeholder="Contraseña" />
+<button onclick="login()">Iniciar sesión</button>
+
+<p id="resultado"></p>
+
+<script>
+async function login() {
+    const usernameRaw = document.getElementById("username").value;
+    const passwordRaw = document.getElementById("password").value;
+
+    // ⚠️ Intentamos convertir las entradas a JSON
+    let username, password;
+    try {
+        username = JSON.parse(usernameRaw);
+        password = JSON.parse(passwordRaw);
+    } catch (e) {
+        username = usernameRaw;
+        password = passwordRaw;
+    }
+
+    const resultado = document.getElementById("resultado");
+
+    try {
+        const response = await fetch("http://localhost:3000/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            resultado.innerText = "✅ Bienvenido " + data.user.username;
+        } else {
+            resultado.innerText = "❌ " + data.message;
+        }
+    } catch (error) {
+        resultado.innerText = "❌ Error al conectar con el servidor o parsear respuesta";
+        console.error(error);
+    }
+}
+
+</script>
+</body>
+</html>
