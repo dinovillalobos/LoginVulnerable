@@ -32,12 +32,15 @@ Simular una aplicación vulnerable para:
 1. **Clona el repositorio**
    ```bash
    git clone https://github.com/dinovillalobos/LoginVulnerable.git
-   cd Reto1
+   cd LoginVulnerable
 
 2. **Instalar dependencias**
    ```bash
    cd backend
    npm install
+   npm init -y
+   npm install dotenv
+
 
 3. **Configurar variables de entorno**
    Crea un archivo .env dentro del directorio backend con el siguiente contenido
@@ -50,7 +53,7 @@ Simular una aplicación vulnerable para:
 
 1. **Desde la carpeta backend, corre el servidor:**
    ```bash
-   npm start
+   node server.js
 
 2. **Abre tu navegador y entra a:**
    ```bash
